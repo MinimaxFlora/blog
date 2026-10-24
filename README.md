@@ -73,18 +73,26 @@ npx hexo new page "页面标题"     # 新建页面 -> source/<页面标题>/ind
 
 ```
 ├── _config.yml            # 站点配置（标题、URL、插件、搜索/订阅/站点地图）
-├── _config.anzhiyu.yml    # 主题覆盖配置（菜单、社交、横幅、搜索等）
+├── _config.anzhiyu.yml    # 主题覆盖配置（菜单、社交、横幅、首页卡片、搜索等）
 ├── scaffolds/             # 新建文章/页面的模板
 ├── source/
 │   ├── _posts/            # 文章
+│   ├── _data/
+│   │   └── creativity.yml # 首页图标云的技术栈图标与配色
 │   ├── about/             # 关于页
 │   ├── tags/              # 标签页
 │   ├── categories/        # 分类页
-│   ├── img/               # 自托管图片（横幅、头像、favicon）
+│   ├── css/custom.css     # 自定义样式（覆盖主题的版式问题）
+│   ├── img/               # 自托管图片（横幅、头像、封面、图标）
 │   └── CNAME              # 自定义域名
 ├── themes/anzhiyu/        # 主题（git submodule，勿直接改，改根目录覆盖配置）
-└── tools/gen-assets.py    # 生成横幅/头像/OG 图片的脚本
+└── tools/gen-assets.py    # 生成横幅/头像/封面/推荐卡图片的脚本
 ```
+
+改主题外观时优先动这两个文件，**不要改 `themes/anzhiyu/` 里的任何东西**，否则更新主题会冲突：
+
+- `_config.anzhiyu.yml`：主题自带的配置项（菜单、首页卡片、侧边栏、评论等）
+- `source/css/custom.css`：主题没暴露成配置的样式微调（会在主题样式之后加载）
 
 主题升级：
 
