@@ -1,0 +1,60 @@
+/* ==========================================================================
+   站点自定义样式（优先于主题样式生效）
+   ========================================================================== */
+
+/* 首页横幅：图标云裁切在卡片内，避免溢出到分类按钮上 */
+#random-banner {
+  overflow: hidden;
+}
+
+/* 标语压在图标云之上 */
+#random-banner .banners-title {
+  position: relative;
+  z-index: 2;
+}
+
+#random-banner #skills-tags-group-all {
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 图标云上移，填满卡片中部的留白 */
+#random-banner #skills-tags-group-all .tags-group-wrapper {
+  margin-top: 2.2rem;
+}
+
+/* 窄屏下图标云会挤压标题，直接隐藏 */
+@media screen and (max-width: 768px) {
+  #random-banner #skills-tags-group-all {
+    display: none;
+  }
+}
+
+/* 文章卡片标题最多两行，避免高矮不齐 */
+#recent-posts .recent-post-item .article-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* 首页文章摘要：主题默认把它 opacity:0 / height:0 隐藏，这里还原成一行。
+   注意 Chrome 155 起 display:-webkit-box 已失效，改用 block + max-height 截断；
+   底部信息行是绝对定位的，摘要只能占一行，否则会压到标签/时间上。 */
+#content-inner #recent-posts > .recent-post-item > .recent-post-info > .content {
+  display: block;
+  height: auto;
+  max-height: 1.7em;
+  opacity: 1;
+  overflow: hidden;
+  margin-top: 0.4rem;
+  padding-right: 5.5rem;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}

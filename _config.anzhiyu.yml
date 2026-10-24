@@ -134,7 +134,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: "background: url(/img/banner.png) top / cover no-repeat" # "background: url() top / cover no-repeat"
+index_img: "background: url(/img/banner.jpg) top / cover no-repeat" # "background: url() top / cover no-repeat"
 
 # If the banner of page not setting, it will show the top_img
 default_top_img: false
@@ -149,7 +149,12 @@ cover:
   position: left
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    # - /img/default_cover.jpg
+    - /img/cover/1.jpg
+    - /img/cover/2.jpg
+    - /img/cover/3.jpg
+    - /img/cover/4.jpg
+    - /img/cover/5.jpg
+    - /img/cover/6.jpg
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -199,7 +204,7 @@ wordcount:
 # false: do not show the article introduction
 index_post_content:
   method: 3
-  length: 500 # if you set method to 2 or 3, the length need to config
+  length: 120 # if you set method to 2 or 3, the length need to config
 
 # anchor
 # when you scroll in post, the URL will update according to header id.
@@ -231,13 +236,8 @@ post_copyright:
 # Sponsor/reward
 reward:
   enable: false
-  QR_code:
-    - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png
-      link:
-      text: 微信
-    - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png
-      link:
-      text: 支付宝
+  # 需要打赏时在此填入自己的收款码图片
+  QR_code: []
 
 # Post edit
 # Easily browse and edit blog source code online.
@@ -635,14 +635,14 @@ h2Divider: false
 table_interlaced_discoloration: false
 
 # 首页双栏显示
-article_double_row: true
+article_double_row: false
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默认top_img全屏，site_info在中间)
 # The position of site info, eg: 300px/300em/300rem/10% (主页标题距离顶部距离)
-index_site_info_top:
+index_site_info_top: 32%
 # The height of top_img, eg: 300px/300em/300rem (主页top_img高度)
-index_top_img_height:
+index_top_img_height: 56vh
 
 # The user interface setting of category and tag page (category和tag页的UI设置)
 # index - same as Homepage UI (index 值代表 UI将与首页的UI一样)
@@ -747,7 +747,7 @@ hr_icon:
 
 # the subtitle on homepage (主页subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Effect Speed Options (打字效果速度参数)
@@ -762,10 +762,12 @@ subtitle:
   # source: 2  调用一句网（简体） http://yijuzhan.com/
   # source: 3  调用今日诗词（简体） https://www.jinrishici.com/
   # subtitle 会先显示 source , 再显示 sub 的内容
-  source: 1
+  source: false
   # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
   sub:
-    # - 生活明朗&#44;万物可爱&#44;人间值得&#44;未来可期.
+    - 把折腾过的东西留下来
+    - OpenWrt 与 Docker 的踩坑日常
+    - 想到什么就写什么
 
 # Loading Animation (加载动画)
 preloader:
@@ -846,7 +848,7 @@ busuanzi:
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
   enable: true
-  publish_date: 4/1/2021 00:00:00
+  publish_date: 10/24/2026 00:00:00
 
 # Console - Newest Comments
 newest_comments:
@@ -1034,37 +1036,37 @@ css_prefix: true
 
 # 首页顶部相关配置
 home_top:
-  enable: false # 开关
+  enable: true # 开关
   timemode: date #date/updated
-  title: 生活明朗
-  subTitle: 万物可爱。
-  siteText: anheyu.com
+  title: 记录技术与生活
+  subTitle: 把折腾留下来
+  siteText: blog.tatalvpai.vip
   category:
-    - name: 前端
-      path: /categories/前端开发/
+    - name: 生活
+      path: /categories/生活/
       shadow: var(--anzhiyu-shadow-blue)
       class: blue
-      icon: anzhiyu-icon-dove
-    - name: 大学
-      path: /categories/大学生涯/
+      icon: anzhiyu-icon-book
+    - name: 技术
+      path: /categories/技术/
       shadow: var(--anzhiyu-shadow-red)
       class: red
       icon: anzhiyu-icon-fire
-    - name: 生活
-      path: /categories/生活日常/
+    - name: 归档
+      path: /archives/
       shadow: var(--anzhiyu-shadow-green)
       class: green
-      icon: anzhiyu-icon-book
-  default_descr: 再怎么看我也不知道怎么描述它的啦！
+      icon: anzhiyu-icon-box-archive
+  default_descr: 这里放着一堆折腾记录，希望对你也有用。
   swiper:
     enable: false
     swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css #swiper css依赖
     swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js #swiper js依赖
   banner:
-    tips: 新品主题
-    title: Theme-AnZhiYu
-    image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
-    link: https://docs.anheyu.com/
+    tips: 关于本站
+    title: 从第一篇文章开始
+    image: /img/todaycard.jpg
+    link: /about/
 
 # 朋友圈配置
 friends_vue:
@@ -1084,7 +1086,7 @@ bubble:
 
 #  控制台打印信息
 console:
-  enable: true
+  enable: false
 
 # 51a统计配置
 LA:
@@ -1236,7 +1238,7 @@ dynamicEffect:
 inject:
   head:
     # 自定义css
-    # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+    - <link rel="stylesheet" href="/css/custom.css">
 
   bottom:
     # 自定义js

@@ -1,0 +1,43 @@
+- creativity_list:
+    - name: Hexo
+      icon: /img/skills/hexo.svg
+      color: "#0e83cd"
+    - name: GitHub
+      icon: /img/skills/github.svg
+      color: "#1f2328"
+    - name: Docker
+      icon: /img/skills/docker.svg
+      color: "#2496ed"
+    - name: Cloudflare
+      icon: /img/skills/cloudflare.svg
+      color: "#f38020"
+    - name: OpenWrt
+      icon: /img/skills/openwrt.svg
+      color: "#00b5e2"
+    - name: Python
+      icon: /img/skills/python.svg
+      color: "#3776ab"
+    - name: Linux
+      icon: /img/skills/linux.svg
+      color: "#2b2b2b"
+    - name: JavaScript
+      icon: /img/skills/javascript.svg
+      color: "#ca8a04"
+    - name: Markdown
+      icon: /img/skills/markdown.svg
+      color: "#083fa1"
+    - name: Git
+      icon: /img/skills/git.svg
+      color: "#f05032"
+    - name: Nginx
+      icon: /img/skills/nginx.svg
+      color: "#009639"
+    - name: Debian
+      icon: /img/skills/debian.svg
+      color: "#a81d33"
+    - name: Node.js
+      icon: /img/skills/node.js.svg
+      color: "#5fa04e"
+    - name: Vim
+      icon: /img/skills/vim.svg
+      color: "#019733"

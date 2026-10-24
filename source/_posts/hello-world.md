@@ -8,6 +8,8 @@ categories:
   - 生活
 keywords: 博客, 开始
 description: 博客的第一篇文章，聊聊为什么要写博客。
+cover: /img/cover/1.jpg
+top_group_list: 6
 top_img: false
 ---
 

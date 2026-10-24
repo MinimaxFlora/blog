@@ -66,8 +66,8 @@ def build_banner() -> Path:
     img = Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGB")
     img = img.filter(ImageFilter.GaussianBlur(4))
 
-    path = OUT / "banner.png"
-    img.save(path, optimize=True)
+    path = OUT / "banner.jpg"
+    img.save(path, quality=86, optimize=True, progressive=True)
     return path
 
 
@@ -127,7 +127,7 @@ def build_og() -> Path:
         fill=(255, 255, 255),
     )
 
-    sub = "记录技术与生活"
+    sub = "璁板綍鎶€鏈笌鐢熸椿"
     box = draw.textbbox((0, 0), sub, font=sub_font)
     draw.text(
         ((w - (box[2] - box[0])) / 2 - box[0], h / 2 + 40),
@@ -171,9 +171,87 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="
 """
 
 
+COVER_PALETTES = [
+    ((23, 37, 84), (13, 116, 144)),
+    ((76, 29, 149), (190, 24, 93)),
+    ((6, 78, 59), (5, 150, 105)),
+    ((120, 53, 15), (190, 18, 60)),
+    ((30, 58, 138), (109, 40, 217)),
+    ((15, 23, 42), (67, 56, 202)),
+]
+
+
+def _vignette(canvas: np.ndarray, strength: float = 0.30) -> np.ndarray:
+    h, w, _ = canvas.shape
+    ys, xs = np.mgrid[0:h, 0:w]
+    nx = (xs - w / 2) / (w / 2)
+    ny = (ys - h / 2) / (h / 2)
+    return canvas * (1.0 - strength * np.clip(nx**2 + ny**2, 0, 1.6) ** 1.1)[:, :, None]
+
+
+def _cover(top: tuple[int, int, int], bottom: tuple[int, int, int], w: int = 1000, h: int = 625) -> Image.Image:
+    canvas = gradient(w, h, top, bottom)
+    add_blob(canvas, w * 0.18, h * 0.22, w * 0.28, (255, 255, 255), 0.16)
+    add_blob(canvas, w * 0.88, h * 0.82, w * 0.30, (255, 255, 255), 0.12)
+    add_blob(canvas, w * 0.62, h * 0.05, w * 0.22, (255, 255, 255), 0.08)
+    canvas = _vignette(canvas, 0.34)
+    canvas += np.random.default_rng(hash((top, bottom)) % 1000).normal(0, 1.8, canvas.shape)
+
+    img = Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGB")
+    draw = ImageDraw.Draw(img, "RGBA")
+    step = 42
+    for x in range(-h, w + h, step):
+        draw.line([(x, 0), (x + h, h)], fill=(255, 255, 255, 12), width=1)
+
+    return img.filter(ImageFilter.GaussianBlur(0.6))
+
+
+def build_covers() -> list[Path]:
+    out_dir = OUT / "cover"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for index, (top, bottom) in enumerate(COVER_PALETTES, start=1):
+        path = out_dir / f"{index}.jpg"
+        _cover(top, bottom).save(path, quality=86, optimize=True, progressive=True)
+        paths.append(path)
+    return paths
+
+
+def build_todaycard() -> Path:
+    """Promo card shown at the right of the home hero."""
+    w, h = 1200, 680
+    canvas = gradient(w, h, (12, 16, 40), (55, 28, 96))
+    add_blob(canvas, w * 0.10, h * 0.15, 420, (34, 211, 238), 0.45)
+    add_blob(canvas, w * 0.92, h * 0.42, 460, (168, 85, 247), 0.48)
+    add_blob(canvas, w * 0.45, h * 1.05, 480, (236, 72, 153), 0.30)
+    canvas = _vignette(canvas, 0.30)
+    canvas += np.random.default_rng(21).normal(0, 1.6, canvas.shape)
+
+    img = Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGB")
+    draw = ImageDraw.Draw(img, "RGBA")
+    for x in range(-h, w + h, 56):
+        draw.line([(x, 0), (x + h, h)], fill=(255, 255, 255, 10), width=1)
+
+    # darken the lower part so overlaid white text stays readable
+    shade = Image.new("L", (w, h), 0)
+    sd = ImageDraw.Draw(shade)
+    for y in range(h):
+        alpha = int(120 * max(0.0, (y - h * 0.45) / (h * 0.55)) ** 1.5)
+        sd.line([(0, y), (w, y)], fill=alpha)
+    img = Image.composite(Image.new("RGB", (w, h), (8, 10, 24)), img, shade)
+
+    img = img.filter(ImageFilter.GaussianBlur(0.6))
+    path = OUT / "todaycard.jpg"
+    img.save(path, quality=86, optimize=True, progressive=True)
+    return path
+
+
 def main() -> None:
-    for builder in (build_banner, build_avatar, build_og):
+    for builder in (build_banner, build_avatar, build_og, build_todaycard):
         path = builder()
+        print(f"{path.relative_to(ROOT)}  {path.stat().st_size / 1024:.1f} KiB")
+
+    for path in build_covers():
         print(f"{path.relative_to(ROOT)}  {path.stat().st_size / 1024:.1f} KiB")
 
     favicon = OUT / "favicon.svg"
@@ -183,3 +261,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
