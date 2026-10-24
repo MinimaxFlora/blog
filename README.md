@@ -1,4 +1,4 @@
-# Tatalvpai Blog
+# TS Blog
 
 个人博客，基于 [Hexo](https://hexo.io/) + [安知鱼主题](https://github.com/anzhiyu-c/hexo-theme-anzhiyu)，
 通过 GitHub Actions 自动构建并发布到 GitHub Pages，域名 `https://blog.tatalvpai.vip`。

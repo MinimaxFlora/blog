@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Tatalvpai
+title: TS Blog
 subtitle: '记录技术与生活'
-description: 'Tatalvpai 的个人博客 —— 记录折腾、代码与日常。'
-keywords: 'Hexo, Anzhiyu, 博客, 技术, Tatalvpai'
+description: 'TS Blog —— 记录折腾、代码与日常。'
+keywords: 'Hexo, Anzhiyu, 博客, 技术, TS Blog'
 author: MinimaxFlora
 language: zh-CN
 timezone: 'Asia/Shanghai'

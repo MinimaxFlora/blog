@@ -1,4 +1,7 @@
-"""Generate self-hosted banner / avatar / favicon assets for the blog.
+"""Generate self-hosted banner / cover / OG assets for the blog.
+
+The brand logo (source/img/logo.png) and favicon (source/img/favicon.ico) come
+from the Website_Resources repository and are not generated here.
 
 Run:  python tools/gen-assets.py
 Outputs are written into source/img/.
@@ -71,37 +74,6 @@ def build_banner() -> Path:
     return path
 
 
-def build_avatar() -> Path:
-    size = 512
-    canvas = gradient(size, size, (79, 70, 229), (14, 165, 233))
-    add_blob(canvas, size * 0.22, size * 0.18, 200, (255, 255, 255), 0.28)
-    add_blob(canvas, size * 0.85, size * 0.88, 220, (236, 72, 153), 0.35)
-    canvas += np.random.default_rng(3).normal(0, 1.2, canvas.shape)
-
-    img = Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGB").convert("RGBA")
-
-    mask = Image.new("L", (size, size), 0)
-    ImageDraw.Draw(mask).ellipse((0, 0, size - 1, size - 1), fill=255)
-
-    draw = ImageDraw.Draw(img)
-    font = _load_font(int(size * 0.52))
-    text = "T"
-    box = draw.textbbox((0, 0), text, font=font)
-    tw, th = box[2] - box[0], box[3] - box[1]
-    draw.text(
-        ((size - tw) / 2 - box[0], (size - th) / 2 - box[1] - size * 0.02),
-        text,
-        font=font,
-        fill=(255, 255, 255, 235),
-    )
-
-    img.putalpha(mask)
-
-    path = OUT / "avatar.png"
-    img.save(path, optimize=True)
-    return path
-
-
 def build_og() -> Path:
     """1200x630 social preview card with the site name."""
     w, h = 1200, 630
@@ -118,7 +90,7 @@ def build_og() -> Path:
     title_font = _load_font(96)
     sub_font = _load_font(40)
 
-    title = "Tatalvpai"
+    title = "TS Blog"
     box = draw.textbbox((0, 0), title, font=title_font)
     draw.text(
         ((w - (box[2] - box[0])) / 2 - box[0], h / 2 - 96),
@@ -156,19 +128,6 @@ def _load_font(size: int) -> ImageFont.FreeTypeFont:
                 continue
     return ImageFont.load_default(size)
 
-
-FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4f46e5"/>
-      <stop offset="1" stop-color="#0ea5e9"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <text x="32" y="46" font-family="Segoe UI, Arial, sans-serif" font-size="40"
-        font-weight="700" fill="#ffffff" text-anchor="middle">T</text>
-</svg>
-"""
 
 
 COVER_PALETTES = [
@@ -247,16 +206,13 @@ def build_todaycard() -> Path:
 
 
 def main() -> None:
-    for builder in (build_banner, build_avatar, build_og, build_todaycard):
+    for builder in (build_banner, build_og, build_todaycard):
         path = builder()
         print(f"{path.relative_to(ROOT)}  {path.stat().st_size / 1024:.1f} KiB")
 
     for path in build_covers():
         print(f"{path.relative_to(ROOT)}  {path.stat().st_size / 1024:.1f} KiB")
 
-    favicon = OUT / "favicon.svg"
-    favicon.write_text(FAVICON, encoding="utf-8")
-    print(f"{favicon.relative_to(ROOT)}  {favicon.stat().st_size / 1024:.1f} KiB")
 
 
 if __name__ == "__main__":

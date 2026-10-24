@@ -61,7 +61,7 @@ social:
 author_status:
   enable: false
   # 可以是任何图片，建议放表情包或者emoji图片，效果都很好，[表情包速查](https://emotion.xiaokang.me/)
-  statusImg: "/img/avatar.png"
+  statusImg: "/img/logo.png"
   skills:
     # - 🤖️ 数码科技爱好者
     # - 🔍 分享与热心帮助
@@ -123,11 +123,11 @@ katex:
 # --------------------------------------
 
 # Favicon（网站图标）
-favicon: /img/favicon.svg
+favicon: /img/brand/favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: /img/avatar.png
+  img: /img/logo.png
   effect: false
 
 # Disable all banner image
@@ -779,7 +779,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: /img/avatar.png # 自定加载动画义头像
+  avatar: /img/logo.png # 自定加载动画义头像
 
 # aside (侧边栏)
 # --------------------------------------
