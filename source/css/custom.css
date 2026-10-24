@@ -12,15 +12,20 @@
   display: none;
 }
 
-/* 标语压在图标云之上 */
+/* 标语压在图标云之上，但要低于悬停遮罩（否则出现「随便逛逛」时文字浮在蓝色遮罩上面） */
 #random-banner .banners-title {
   position: relative;
   z-index: 2;
 }
 
 #random-banner #skills-tags-group-all {
+  position: relative;
   z-index: 1;
   pointer-events: none;
+}
+
+#random-banner #random-hover {
+  z-index: 3;
 }
 
 /* 图标云上移，填满卡片中部的留白 */
@@ -31,6 +36,18 @@
 /* 窄屏下图标云会挤压标题，直接隐藏 */
 @media screen and (max-width: 768px) {
   #random-banner #skills-tags-group-all {
+    display: none;
+  }
+
+  /* 首页卡片区的横向滚动条不显示，保留滑动能力 */
+  #home_top,
+  #home_top * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #home_top::-webkit-scrollbar,
+  #home_top *::-webkit-scrollbar {
     display: none;
   }
 }

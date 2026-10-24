@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: TS Blog
+title: MinimaxFlora Blog
 subtitle: '记录技术与生活'
-description: 'TS Blog —— 记录折腾、代码与日常。'
-keywords: 'Hexo, Anzhiyu, 博客, 技术, TS Blog'
+description: 'MinimaxFlora Blog —— 记录折腾、代码与日常。'
+keywords: 'Hexo, Anzhiyu, 博客, 技术, MinimaxFlora'
 author: MinimaxFlora
 language: zh-CN
 timezone: 'Asia/Shanghai'

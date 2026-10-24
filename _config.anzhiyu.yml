@@ -134,7 +134,8 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: "background: url(/img/banner.jpg) top / cover no-repeat" # "background: url() top / cover no-repeat"
+# 首页不放整屏大图，打开就是卡片区（与参考站一致）
+index_img: false # "background: url() top / cover no-repeat"
 
 # If the banner of page not setting, it will show the top_img
 default_top_img: false
@@ -165,7 +166,7 @@ error_img:
 error_404:
   enable: true
   subtitle: "请尝试站内搜索寻找文章"
-  background: /img/banner.png
+  background: /img/banner.jpg
 
 post_meta:
   page: # Home Page
