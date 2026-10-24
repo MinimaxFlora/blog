@@ -12,11 +12,6 @@
   display: none;
 }
 
-/* 头像用品牌 logo：加白底，避免 logo 的镂空处透出卡片蓝色 */
-.author-info-avatar .avatar-img {
-  background: #fff;
-}
-
 /* 标语压在图标云之上 */
 #random-banner .banners-title {
   position: relative;
