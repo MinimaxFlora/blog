@@ -61,7 +61,7 @@ social:
 author_status:
   enable: false
   # 可以是任何图片，建议放表情包或者emoji图片，效果都很好，[表情包速查](https://emotion.xiaokang.me/)
-  statusImg: "https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png"
+  statusImg: "/img/avatar.png"
   skills:
     # - 🤖️ 数码科技爱好者
     # - 🔍 分享与热心帮助
@@ -160,7 +160,7 @@ error_img:
 error_404:
   enable: true
   subtitle: "请尝试站内搜索寻找文章"
-  background: https://bu.dusays.com/2023/05/08/645907596997d.gif
+  background: /img/banner.png
 
 post_meta:
   page: # Home Page
@@ -220,7 +220,7 @@ post_copyright:
   enable: true
   decode: false
   author_href:
-  location: 长沙
+  location:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
   avatarSinks: false # hover时头像下沉
@@ -230,7 +230,7 @@ post_copyright:
 
 # Sponsor/reward
 reward:
-  enable: true
+  enable: false
   QR_code:
     - img: https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png
       link:
@@ -777,7 +777,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg # 自定加载动画义头像
+  avatar: /img/avatar.png # 自定加载动画义头像
 
 # aside (侧边栏)
 # --------------------------------------
@@ -801,7 +801,7 @@ aside:
     enable: false
     content: 欢迎来看我的博客鸭~
   card_weixin:
-    enable: true
+    enable: false
     face: https://bu.dusays.com/2023/01/13/63c02edf44033.png
     backFace: https://bu.dusays.com/2023/05/13/645fa415e8694.png
   card_recent_post:
@@ -1034,7 +1034,7 @@ css_prefix: true
 
 # 首页顶部相关配置
 home_top:
-  enable: true # 开关
+  enable: false # 开关
   timemode: date #date/updated
   title: 生活明朗
   subTitle: 万物可爱。
@@ -1124,7 +1124,7 @@ comment_barrage_config:
 # 左下角音乐配置项
 # https://github.com/metowolf/MetingJS
 nav_music:
-  enable: true
+  enable: false
   console_widescreen_music: false # 宽屏状态控制台显示音乐而不是标签 enable为true 控制台依然会显示
   id: 8152976493
   server: netease
@@ -1180,7 +1180,7 @@ greetingBox:
 
 # 文章顶部ai摘要
 post_head_ai_description:
-  enable: true
+  enable: false
   gptName: AnZhiYu
   mode: local # 默认模式 可选值: tianli/local
   switchBtn: false # 可以配置是否显示切换按钮 以切换tianli/local
@@ -1221,7 +1221,7 @@ rightClickMenu:
 
 # 首页随便逛逛people模式 而非技能点模式，关闭后为技能点模式需要配置creativity.yml
 peoplecanvas:
-  enable: true
+  enable: false
   img: https://upload-bbs.miyoushe.com/upload/2024/07/27/125766904/ba62475f396df9de3316a08ed9e65d86_5680958632268053399..png
 
 # 动效
