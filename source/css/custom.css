@@ -61,22 +61,86 @@
   -webkit-box-orient: vertical;
 }
 
-/* 首页文章摘要：主题默认把它 opacity:0 / height:0 隐藏，这里还原成一行。
-   注意 Chrome 155 起 display:-webkit-box 已失效，改用 block + max-height 截断；
-   底部信息行是绝对定位的，摘要只能占一行，否则会压到标签/时间上。 */
-#content-inner #recent-posts > .recent-post-item > .recent-post-info > .content {
-  display: block;
-  height: auto;
-  max-height: 1.7em;
-  opacity: 1;
+/* 卡片标题均分换行，避免最后一行只剩一两个字 */
+.article-title {
+  text-wrap: balance;
+}
+
+/* 文章标题字号略收，长标题尽量单行放下 */
+#post-info .post-title,
+#page-site-info .post-title {
+  font-size: 2.15rem;
+  line-height: 1.35;
+}
+
+/* 代码块里未被语法高亮的文本（如 sources.list 内容）颜色过浅，
+   实测对比度只有 2.6:1，统一加深到可读 */
+#article-container figure.highlight .code .line,
+#article-container figure.highlight .gutter .line {
+  color: #4a5a68;
+}
+
+/* 长命令自动换行，避免被代码框右侧截断 */
+#article-container figure.highlight .code pre,
+#article-container figure.highlight pre,
+#article-container pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* 表格：圆角、斑马纹、表头带底色 */
+#article-container table {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
   overflow: hidden;
-  margin-top: 0.4rem;
-  padding-right: 5.5rem;
-  color: var(--anzhiyu-secondtext);
-  font-size: 0.88rem;
-  line-height: 1.6;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+}
+
+#article-container table thead th {
+  background: rgba(66, 90, 239, 0.07);
+  color: #2b3a55;
+  font-weight: 700;
+  border: none;
+}
+
+#article-container table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.025);
+}
+
+#article-container table tbody tr:hover {
+  background: rgba(66, 90, 239, 0.06);
+}
+
+#article-container table td,
+#article-container table th {
+  border: none;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 10px 14px;
+}
+
+#article-container table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 行内代码不用主题的蓝色底白字，改成低调的浅灰 */
+#article-container code {
+  background: rgba(15, 23, 42, 0.06);
+  color: #334155;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+#article-container pre code,
+#article-container figure.highlight code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+/* 首页文章摘要：双列卡片模式下主题会隐藏摘要，这里保持与主题一致 */
+#content-inner #recent-posts > .recent-post-item > .recent-post-info > .content {
   -webkit-line-clamp: unset;
   line-clamp: unset;
 }
